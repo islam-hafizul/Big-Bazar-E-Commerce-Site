@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
-import { Product } from '../../../service/product/product';
+import { ProductService } from '../../../service/product-service/product-service';
 
 @Component({
   selector: 'app-products',
@@ -28,22 +28,22 @@ export class Products implements OnInit {
 
   categoryList: any[] = [];
   productList: any[] = [];
-  constructor(private productService: Product) {}
+  
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.getCategory();
     this.getAllProducts();
-  }
-
-  getCategory() {
-    this.productService.getCategory().subscribe((response: any) => {
-      this.categoryList = response.data;
-    });
+    this.getCategory();
   }
 
   getAllProducts() {
     this.productService.getAllProducts().subscribe((response: any) => {
       this.productList = response.data;
+    });
+  }
+  getCategory() {
+    this.productService.getCategory().subscribe((response: any) => {
+      this.categoryList = response.data;
     });
   }
 
@@ -63,23 +63,6 @@ export class Products implements OnInit {
     }
   }
 
-  onSave() {
-    this.productService.saveProduct(this.productObj).subscribe((response: any) => {
-      if (response.result) {
-        this.onReset();
-        this.closeSidePanel();
-        alert('Product saved successfully!');
-      } else {
-        alert('Failed to save product. Please try again.');
-      }
-    });
-  }
-
-  onEdit(product: any) {
-    this.productObj = { ...product };
-    this.openSidePanel();
-  }
-
   onUpdate() {
     this.productService.updateProduct(this.productObj).subscribe((response: any) => {
       if (response.result) {
@@ -88,6 +71,18 @@ export class Products implements OnInit {
         alert('Product updated successfully!');
       } else {
         alert('Failed to update product. Please try again.');
+      }
+    });
+  }
+
+  onSave() {
+    this.productService.saveProduct(this.productObj).subscribe((response: any) => {
+      if (response.result) {
+        this.onReset();
+        this.closeSidePanel();
+        alert('Product saved successfully!');
+      } else {
+        alert('Failed to save product. Please try again.');
       }
     });
   }
@@ -103,6 +98,11 @@ export class Products implements OnInit {
         }
       });
     }
+  }
+
+  onEdit(product: any) {
+    this.productObj = { ...product };
+    this.openSidePanel();
   }
 
   openSidePanel(){

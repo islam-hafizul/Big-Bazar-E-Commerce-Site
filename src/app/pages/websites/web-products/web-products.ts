@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../../../service/product-service/product-service';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet, RouterLinkActive, RouterLink } from '@angular/router';
-
+import { ProductService } from '../../../service/product-service/product-service';
 
 @Component({
-  selector: 'app-home',
-  imports: [CommonModule, RouterLink, RouterOutlet, RouterLinkActive],
-  templateUrl: './home.html',
-  styleUrl: './home.css',
+  selector: 'app-customer-products',
+  imports: [CommonModule],
+  templateUrl: './web-products.html',
+  styleUrl: './web-products.css',
 })
-export class Home implements OnInit {
+export class WebProducts  implements OnInit {
 
   productList: any[] = [];
   categoryList: any[] = [];
@@ -34,8 +32,5 @@ export class Home implements OnInit {
     })
   }
 
-  // getProductByCategory(categoryId: number, categoryName: string){
-
-  // }
-
 }
+

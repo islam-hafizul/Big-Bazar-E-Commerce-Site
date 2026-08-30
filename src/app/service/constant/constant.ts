@@ -5,6 +5,8 @@ export const Constant = {
         GET_ALL_CATEGORIES: "GetAllCategory",
         CREATE_PRODUCT: "CreateProduct",
         UPDATE_PRODUCT: "UpdateProduct",
-        DELETE_PRODUCT: "DeleteProductById?id="
+        DELETE_PRODUCT: "DeleteProductById?id=",
+
+        GET_PRODUCT_BY_CATEGORY_ID: "GetAllProductsByCategoryId?id="
     }
 };

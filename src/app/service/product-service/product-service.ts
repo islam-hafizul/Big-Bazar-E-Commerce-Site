@@ -6,7 +6,7 @@ import { Constant } from '../constant/constant';
 @Injectable({
   providedIn: 'root'
 })
-export class Product {
+export class ProductService {
     constructor(private http: HttpClient) {}
 
     getCategory() {
@@ -15,6 +15,10 @@ export class Product {
 
     getAllProducts() {
         return this.http.get(Constant.API_END_POINT + Constant.METHODS.GET_ALL_PRODUCTS);
+    }
+
+    getAllProductsByCategoryId(categoryId: number) {
+        return this.http.get(Constant.API_END_POINT + Constant.METHODS.GET_PRODUCT_BY_CATEGORY_ID + categoryId);
     }
 
     saveProduct(productObj: any) {
